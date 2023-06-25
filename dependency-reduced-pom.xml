@@ -68,6 +68,12 @@
         </exclusion>
       </exclusions>
     </dependency>
+    <dependency>
+      <groupId>de.tr7zw</groupId>
+      <artifactId>item-nbt-api-plugin</artifactId>
+      <version>2.11.3</version>
+      <scope>provided</scope>
+    </dependency>
   </dependencies>
   <properties>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>

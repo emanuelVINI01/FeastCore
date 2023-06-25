@@ -23,6 +23,7 @@ public class PluginFinder {
         val pluginsDirectory = new File(plugin.getDataFolder(), "plugins");
         if (!pluginsDirectory.exists()) pluginsDirectory.mkdirs();
         for (File pluginFile : pluginsDirectory.listFiles()) {
+            if (pluginFile.isDirectory()) continue;
             loadPlugin(pluginFile);
         }
     }
@@ -78,11 +79,16 @@ public class PluginFinder {
         try {
 
             val plugin = Bukkit.getPluginManager().loadPlugin(file);
+            ;
             if (!(plugin instanceof HigePlugin)) {
                 Bukkit.getConsoleSender().
                         sendMessage(String.format(
                                 "§e[HigeCore] §cOcorreu um erro ao carregar o plugin §f%s§c. Ele não e um plugin Hige.",
                                 file.getName()));
+                try {
+                    Bukkit.getPluginManager().disablePlugin(plugin);
+                } catch (Exception ignore) {
+                }
                 return;
             }
             val higePlugin = (HigePlugin) plugin;
@@ -92,6 +98,7 @@ public class PluginFinder {
                     sendMessage(String.format(
                             "§e[HigeCore] §aPlugin §f%s§a carregado com sucesso!",
                             file.getName()));
+
         } catch (Exception e) {
             Bukkit.getConsoleSender().
                     sendMessage(String.format(
