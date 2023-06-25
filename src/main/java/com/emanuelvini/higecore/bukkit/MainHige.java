@@ -13,8 +13,11 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class MainHige extends JavaPlugin {
 
     private DependencyFinder dependencyFinder;
+
     private PluginFinder pluginFinder;
+
     private ConfigurationAutoSaver configurationAutoSaver;
+
     private HikariDataSource mysql;
 
     @Getter
@@ -25,13 +28,21 @@ public class MainHige extends JavaPlugin {
         instance = this;
         saveDefaultConfig();
         super.onEnable();
-        Bukkit.getConsoleSender().sendMessage("§e[HigeCore] §bInicializando MySQL...");
+        Bukkit.getConsoleSender().
+                sendMessage("§e[HigeCore] §bInicializando MySQL...");
+
         try {
             mysql = new MySQL(getConfig()).connect();
-            Bukkit.getConsoleSender().sendMessage("§e[HigeCore] §aMySQL inicializado com sucesso!");
+            Bukkit.getConsoleSender().
+                    sendMessage("§e[HigeCore] §aMySQL inicializado com sucesso!");
         } catch (Exception e) {
-            Bukkit.getConsoleSender().sendMessage("§e[HigeCore] §cOcorreu um erro ao inicializar o MySQL. Verifique os dados na configurações.");
-            Bukkit.getConsoleSender().sendMessage("§e[HigeCore] §cInforme o erro abaixo: ");
+            Bukkit.getConsoleSender().
+                    sendMessage(
+                            "§e[HigeCore] §cOcorreu um erro ao inicializar o MySQL. Verifique os dados na configurações."
+                    );
+
+            Bukkit.getConsoleSender().
+                    sendMessage("§e[HigeCore] §cInforme o erro abaixo: ");
             e.printStackTrace();
             Bukkit.getPluginManager().disablePlugin(this);
             return;
@@ -43,7 +54,8 @@ public class MainHige extends JavaPlugin {
         pluginFinder.loadAll();
         dependencyFinder.downloadAndLoadDependencies();
         pluginFinder.enableAll();
-        Bukkit.getConsoleSender().sendMessage("§e[HigeCore] §aPlugins inicializados com sucesso!");
+        Bukkit.getConsoleSender().
+                sendMessage("§e[HigeCore] §aPlugins inicializados com sucesso!");
     }
 
     @Override

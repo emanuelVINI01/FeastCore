@@ -6,22 +6,18 @@ import lombok.Getter;
 import lombok.SneakyThrows;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.plugin.Plugin;
 
 import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
 
 public class CustomConfiguration extends YamlConfiguration {
 
     @Getter
     protected File file;
-    private HigePlugin plugin;
 
 
 
     public CustomConfiguration(File file, HigePlugin plugin) {
-        this.plugin = plugin;
         this.file = file;
         try {
             if (!file.exists()) {
@@ -33,7 +29,9 @@ public class CustomConfiguration extends YamlConfiguration {
             }
             loadConfiguration(file);
         } catch (Exception e) {
-            Bukkit.getConsoleSender().sendMessage(String.format("§e[HigeCore] §cOcorreu um erro ao carregar uma configuração customizado do plugin §f%s§c:", file.getName()));
+            Bukkit.getConsoleSender().sendMessage(
+                    String.format("§e[HigeCore] §cOcorreu um erro ao carregar uma configuração customizado do plugin §f%s§c:",
+                            file.getName()));
             e.printStackTrace();
         }
     }
@@ -44,7 +42,10 @@ public class CustomConfiguration extends YamlConfiguration {
         try {
             super.save(file);
         } catch (Exception e) {
-            Bukkit.getConsoleSender().sendMessage(String.format("§e[HigeCore] §cOcorreu um erro ao salvar uma configuração customizado do plugin §f%s§c:", file.getName()));
+            Bukkit.getConsoleSender().
+                    sendMessage(String.format(
+                            "§e[HigeCore] §cOcorreu um erro ao salvar uma configuração customizado do plugin §f%s§c:",
+                                    file.getName()));
             e.printStackTrace();
         }
 

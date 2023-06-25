@@ -33,17 +33,23 @@ public class HigePlugin extends JavaPlugin {
         instance = null;
     }
 
-    public final void addDependency(String name, String url) { MainHige.getInstance().getDependencyFinder().addDependency(name, url); }
+    public final void addDependency(String name, String url) {
+        MainHige.getInstance().getDependencyFinder().
+                addDependency(name, url);
+    }
 
     public final HikariDataSource getMySQL() {
         return MainHige.getInstance().getMysql();
     }
 
 
-    public final CustomConfiguration getCustomConfiguration(String name, boolean autoSave) {
+    public final CustomConfiguration getCustomConfiguration(String name,
+                                                            boolean autoSave) {
         val configurationFile = new File(getDataFolder(), name);
         val customConfiguration = new CustomConfiguration(configurationFile, this);
-        if (autoSave) MainHige.getInstance().getConfigurationAutoSaver().addConfigurationToAutoSave(customConfiguration, this);
+        if (autoSave) MainHige.getInstance().
+                getConfigurationAutoSaver().
+                addConfigurationToAutoSave(customConfiguration, this);
         return customConfiguration;
     }
 

@@ -5,7 +5,6 @@ import com.emanuelvini.higecore.bukkit.api.plugin.HigePlugin;
 import lombok.AllArgsConstructor;
 import lombok.val;
 import org.bukkit.Bukkit;
-import org.bukkit.plugin.Plugin;
 
 import java.io.File;
 import java.util.HashMap;
@@ -15,7 +14,9 @@ import java.util.Map;
 public class PluginFinder {
 
     private MainHige plugin;
+
     private final Map<String, HigePlugin> loadedPlugins = new HashMap<>();
+
     private final Map<String, HigePlugin> enabledPlugins = new HashMap<>();
 
     public void loadAll() {
@@ -60,9 +61,15 @@ public class PluginFinder {
             Bukkit.getPluginManager().enablePlugin(plugin);
             loadedPlugins.remove(name);
             enabledPlugins.put(name, plugin);
-            Bukkit.getConsoleSender().sendMessage(String.format("§e[HigeCore] §aPlugin §f%s§a habilitado com sucesso!", name));
+            Bukkit.getConsoleSender().
+                    sendMessage(String.format(
+                            "§e[HigeCore] §aPlugin §f%s§a habilitado com sucesso!",
+                            name));
         } catch (Exception e) {
-            Bukkit.getConsoleSender().sendMessage(String.format("§e[HigeCore] §cOcorreu um erro ao habilitar o plugin §f%s§c:", name));
+            Bukkit.getConsoleSender().
+                    sendMessage(String.format(
+                            "§e[HigeCore] §cOcorreu um erro ao habilitar o plugin §f%s§c:",
+                            name));
             e.printStackTrace();
         }
     }
@@ -72,15 +79,24 @@ public class PluginFinder {
 
             val plugin = Bukkit.getPluginManager().loadPlugin(file);
             if (!(plugin instanceof HigePlugin)) {
-                Bukkit.getConsoleSender().sendMessage(String.format("§e[HigeCore] §cOcorreu um erro ao carregar o plugin §f%s§c. Ele não e um plugin Hige.", file.getName()));
+                Bukkit.getConsoleSender().
+                        sendMessage(String.format(
+                                "§e[HigeCore] §cOcorreu um erro ao carregar o plugin §f%s§c. Ele não e um plugin Hige.",
+                                file.getName()));
                 return;
             }
             val higePlugin = (HigePlugin) plugin;
             higePlugin.setupDependencies();
             loadedPlugins.put(plugin.getName(), higePlugin);
-            Bukkit.getConsoleSender().sendMessage(String.format("§e[HigeCore] §aPlugin §f%s§a carregado com sucesso!", file.getName()));
+            Bukkit.getConsoleSender().
+                    sendMessage(String.format(
+                            "§e[HigeCore] §aPlugin §f%s§a carregado com sucesso!",
+                            file.getName()));
         } catch (Exception e) {
-            Bukkit.getConsoleSender().sendMessage(String.format("§e[HigeCore] §cOcorreu um erro ao carregar o plugin §f%s§c:", file.getName()));
+            Bukkit.getConsoleSender().
+                    sendMessage(String.format(
+                            "§e[HigeCore] §cOcorreu um erro ao carregar o plugin §f%s§c:",
+                            file.getName()));
             e.printStackTrace();
         }
 

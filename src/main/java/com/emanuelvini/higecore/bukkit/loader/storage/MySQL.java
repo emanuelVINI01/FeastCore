@@ -14,7 +14,10 @@ public class MySQL {
     public HikariDataSource connect() {
         val mysqlSection = configuration.getConfigurationSection("mysql");
         val config = new HikariConfig();
-        config.setJdbcUrl(String.format("jdbc:mysql://%s:%d/%s", mysqlSection.getString("host"), mysqlSection.getInt("port"), mysqlSection.getString("database")));
+        config.setJdbcUrl(String.format("jdbc:mysql://%s:%d/%s",
+                mysqlSection.getString("host"),
+                mysqlSection.getInt("port"),
+                mysqlSection.getString("database")));
         config.setUsername(mysqlSection.getString("user"));
         config.setPassword(mysqlSection.getString("password"));
         config.addDataSourceProperty("characterEncoding", "utf-8");

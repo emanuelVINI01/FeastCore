@@ -3,7 +3,6 @@ package com.emanuelvini.higecore.bukkit.loader.finder;
 
 import com.emanuelvini.higecore.bukkit.MainHige;
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.val;
 import org.bukkit.Bukkit;
@@ -39,9 +38,15 @@ public class DependencyFinder {
                try {
                    Bukkit.getPluginManager().disablePlugin(plugin);
                    dependencies.remove(name);
-                   Bukkit.getConsoleSender().sendMessage(String.format("§e[HigeCore] §aDependência §f%s§a desabilitada com sucesso!", name));
+                   Bukkit.getConsoleSender().
+                           sendMessage(String.format(
+                                   "§e[HigeCore] §aDependência §f%s§a desabilitada com sucesso!", name)
+                           );
                } catch (Exception e) {
-                   Bukkit.getConsoleSender().sendMessage(String.format("§e[HigeCore] §cOcorreu um erro ao desabilitar a dependência §f%s§c:", name));
+                   Bukkit.getConsoleSender().
+                           sendMessage(String.format
+                                   ("§e[HigeCore] §cOcorreu um erro ao desabilitar a dependência §f%s§c:", name)
+                           );
                    e.printStackTrace();
                }
            }
@@ -54,17 +59,27 @@ public class DependencyFinder {
         if (!dependenciesDirectory.exists()) dependenciesDirectory.mkdirs();
         for (String name : dependencies.keySet()) {
             val url = dependencies.get(name);
-            val dependencyFile = new File(dependenciesDirectory, name + ".jar");
+            val dependencyFile = new File(dependenciesDirectory,
+                    name + ".jar"
+            );
             if (!dependencyFile.exists()) {
                 val download = new URL(url);
-                ReadableByteChannel rbc = Channels.newChannel(download.openStream());
+                ReadableByteChannel rbc = Channels.newChannel(
+                        download.openStream()
+                );
                 FileOutputStream fos = new FileOutputStream(dependencyFile);
                 fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
-                Bukkit.getConsoleSender().sendMessage(String.format("§e[HigeCore] §aDependência §f%s§a baixada com sucesso!", name));
+                Bukkit.getConsoleSender().
+                        sendMessage(String.format(
+                                "§e[HigeCore] §aDependência §f%s§a baixada com sucesso!",
+                                name));
             }
             val plugin = Bukkit.getPluginManager().loadPlugin(dependencyFile);
             Bukkit.getPluginManager().enablePlugin(plugin);
-            Bukkit.getConsoleSender().sendMessage(String.format("§e[HigeCore] §aDependência §f%s§a carregada com sucesso!", name));
+            Bukkit.getConsoleSender().
+                    sendMessage(String.format(
+                            "§e[HigeCore] §aDependência §f%s§a carregada com sucesso!",
+                            name));
         }
     }
 
