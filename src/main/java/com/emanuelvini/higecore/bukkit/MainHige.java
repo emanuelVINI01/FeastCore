@@ -53,7 +53,7 @@ public class MainHige extends JavaPlugin {
                 sendMessage("§e[HigeCore] §6Inicializando plugins...");
         dependencyFinder = new DependencyFinder(this);
         pluginFinder = new PluginFinder(this);
-        configurationAutoSaver = new ConfigurationAutoSaver(this);
+        configurationAutoSaver = new ConfigurationAutoSaver();
         pluginFinder.loadAll();
         dependencyFinder.downloadAndLoadDependencies();
         pluginFinder.enableAll();
