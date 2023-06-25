@@ -1,6 +1,6 @@
 package com.emanuelvini.higecore.bukkit.api.plugin.config;
 
-import com.emanuelvini.higecore.bukkit.MainHige;
+
 import com.emanuelvini.higecore.bukkit.api.plugin.HigePlugin;
 import lombok.AllArgsConstructor;
 
