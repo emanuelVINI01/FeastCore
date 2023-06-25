@@ -52,6 +52,7 @@ public class MainHige extends JavaPlugin {
         Bukkit.getConsoleSender().
                 sendMessage("§e[HigeCore] §6Inicializando plugins...");
         dependencyFinder = new DependencyFinder(this);
+        dependencyFinder.addDependency("NBTAPI", "https://cdn-raw.modrinth.com/data/nfGCP9fk/versions/wtKsBSun/item-nbt-api-plugin-2.11.3.jar");
         pluginFinder = new PluginFinder(this);
         configurationAutoSaver = new ConfigurationAutoSaver();
         pluginFinder.loadAll();
