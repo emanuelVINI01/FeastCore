@@ -1,8 +1,12 @@
 com\emanuelvini\higecore\bukkit\MainHige.class
+com\emanuelvini\higecore\bukkit\api\util\ItemStackBuilder$1.class
 com\emanuelvini\higecore\bukkit\loader\finder\PluginFinder.class
 com\emanuelvini\higecore\bukkit\api\plugin\HigePlugin.class
-com\emanuelvini\higecore\bukkit\api\plugin\config\ConfigurationAutoSaver.class
 com\emanuelvini\higecore\bukkit\api\plugin\config\CustomConfiguration.class
 com\emanuelvini\higecore\bukkit\loader\storage\MySQL.class
-com\emanuelvini\higecore\bukkit\loader\finder\DependencyFinder.class
 com\emanuelvini\higecore\bukkit\api\plugin\log\Logging.class
+com\emanuelvini\higecore\bukkit\api\util\ItemStackBuilder$SkullBuilder.class
+com\emanuelvini\higecore\bukkit\api\util\ItemStackBuilder.class
+com\emanuelvini\higecore\bukkit\api\util\Formatter.class
+com\emanuelvini\higecore\bukkit\api\plugin\config\ConfigurationAutoSaver.class
+com\emanuelvini\higecore\bukkit\loader\finder\DependencyFinder.class

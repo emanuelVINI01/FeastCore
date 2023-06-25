@@ -75,7 +75,9 @@ public class DependencyFinder {
                                 name));
             }
             val plugin = Bukkit.getPluginManager().loadPlugin(dependencyFile);
-            Bukkit.getPluginManager().enablePlugin(plugin);
+            if (!plugin.isEnabled()) {
+                Bukkit.getPluginManager().enablePlugin(plugin);
+            }
             Bukkit.getConsoleSender().
                     sendMessage(String.format(
                             "§e[HigeCore] §aDependência §f%s§a carregada com sucesso!",

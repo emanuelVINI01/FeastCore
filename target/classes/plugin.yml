@@ -1,5 +1,5 @@
 name: HigeCore
 main: com.emanuelvini.higecore.bukkit.MainHige
-version: 1.02
+version: 0.5-ALPHA
 softdepend:
   - SmartInvs
