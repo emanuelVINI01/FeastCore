@@ -34,7 +34,9 @@ public class MainHige extends JavaPlugin {
         try {
             mysql = new MySQL(getConfig()).connect();
             Bukkit.getConsoleSender().
-                    sendMessage("§e[HigeCore] §aMySQL inicializado com sucesso!");
+                    sendMessage(
+                            "§e[HigeCore] §aMySQL inicializado com sucesso!"
+                    );
         } catch (Exception e) {
             Bukkit.getConsoleSender().
                     sendMessage(
@@ -47,7 +49,8 @@ public class MainHige extends JavaPlugin {
             Bukkit.getPluginManager().disablePlugin(this);
             return;
         }
-        Bukkit.getConsoleSender().sendMessage("§e[HigeCore] §6Inicializando plugins...");
+        Bukkit.getConsoleSender().
+                sendMessage("§e[HigeCore] §6Inicializando plugins...");
         dependencyFinder = new DependencyFinder(this);
         pluginFinder = new PluginFinder(this);
         configurationAutoSaver = new ConfigurationAutoSaver(this);
@@ -55,7 +58,9 @@ public class MainHige extends JavaPlugin {
         dependencyFinder.downloadAndLoadDependencies();
         pluginFinder.enableAll();
         Bukkit.getConsoleSender().
-                sendMessage("§e[HigeCore] §aPlugins inicializados com sucesso!");
+                sendMessage(
+                        "§e[HigeCore] §aPlugins inicializados com sucesso!"
+                );
     }
 
     @Override

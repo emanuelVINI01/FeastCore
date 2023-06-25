@@ -13,7 +13,6 @@ public class ConfigurationAutoSaver {
     private final HashMap<CustomConfiguration, HigePlugin>
             autoSaveEnabled = new HashMap<>();
 
-    private MainHige plugin;
 
     public void addConfigurationToAutoSave(CustomConfiguration configuration,
                                            HigePlugin plugin) {

@@ -43,10 +43,11 @@ public class HigePlugin extends JavaPlugin {
     }
 
 
-    public final CustomConfiguration getCustomConfiguration(String name,
-                                                            boolean autoSave) {
-        val configurationFile = new File(getDataFolder(), name);
-        val customConfiguration = new CustomConfiguration(configurationFile, this);
+    public final CustomConfiguration getCustomConfiguration(String name, boolean autoSave) {
+        val configurationFile =
+                new File(getDataFolder(), name);
+        val customConfiguration =
+                new CustomConfiguration(configurationFile, this);
         if (autoSave) MainHige.getInstance().
                 getConfigurationAutoSaver().
                 addConfigurationToAutoSave(customConfiguration, this);
