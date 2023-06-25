@@ -67,8 +67,16 @@ public class MainHige extends JavaPlugin {
     @Override
     public void onDisable() {
         super.onDisable();
+        Bukkit.getConsoleSender().
+                sendMessage("§e[HigeCore] §eDesabilitando plugins...");
         pluginFinder.disableAll();
+        Bukkit.getConsoleSender().
+                sendMessage("§e[HigeCore] §eDesabilitando dependências...");
         dependencyFinder.disableAll();
+        Bukkit.getConsoleSender().
+                sendMessage("§e[HigeCore] §eSalvando configurações customizadas...");
         configurationAutoSaver.saveAllConfigurations();
+        Bukkit.getConsoleSender().
+                sendMessage("§e[HigeCore] §cPlugin desligado com sucesso!");
     }
 }

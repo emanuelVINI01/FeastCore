@@ -33,11 +33,11 @@ public class DependencyFinder {
 
     public void disableAll () {
        for (String name : dependencies.keySet()) {
-           Plugin plugin = Bukkit.getPluginManager().getPlugin(name);
+           val plugin = Bukkit.getPluginManager().getPlugin(name);
            if (plugin != null) {
                try {
                    Bukkit.getPluginManager().disablePlugin(plugin);
-                   dependencies.remove(name);
+
                    Bukkit.getConsoleSender().
                            sendMessage(String.format(
                                    "§e[HigeCore] §aDependência §f%s§a desabilitada com sucesso!", name)
@@ -51,6 +51,7 @@ public class DependencyFinder {
                }
            }
        }
+       dependencies.clear();
     }
 
     @SneakyThrows
