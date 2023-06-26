@@ -1,7 +1,7 @@
 package com.emanuelvini.feastcore.bukkit.api.plugin.config;
 
 
-import com.emanuelvini.feastcore.bukkit.api.plugin.HigePlugin;
+import com.emanuelvini.feastcore.bukkit.api.plugin.FeastPlugin;
 import lombok.AllArgsConstructor;
 
 
@@ -10,12 +10,12 @@ import java.util.HashMap;
 @AllArgsConstructor
 public class ConfigurationAutoSaver {
 
-    private final HashMap<CustomConfiguration, HigePlugin>
+    private final HashMap<CustomConfiguration, FeastPlugin>
             autoSaveEnabled = new HashMap<>();
 
 
     public void addConfigurationToAutoSave(CustomConfiguration configuration,
-                                           HigePlugin plugin) {
+                                           FeastPlugin plugin) {
         autoSaveEnabled.put(configuration, plugin);
     }
 

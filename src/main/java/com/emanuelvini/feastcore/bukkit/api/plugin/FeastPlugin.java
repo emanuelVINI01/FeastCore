@@ -10,10 +10,10 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 
-public class HigePlugin extends JavaPlugin {
+public class FeastPlugin extends JavaPlugin {
 
     @Getter
-    private static HigePlugin instance;
+    private static FeastPlugin instance;
 
     @Getter
     private final Logging customLogger = new Logging(this);

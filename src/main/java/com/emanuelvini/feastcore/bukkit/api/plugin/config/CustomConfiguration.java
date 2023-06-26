@@ -1,6 +1,6 @@
 package com.emanuelvini.feastcore.bukkit.api.plugin.config;
 
-import com.emanuelvini.feastcore.bukkit.api.plugin.HigePlugin;
+import com.emanuelvini.feastcore.bukkit.api.plugin.FeastPlugin;
 import com.google.common.io.Files;
 import lombok.Getter;
 import lombok.SneakyThrows;
@@ -17,7 +17,7 @@ public class CustomConfiguration extends YamlConfiguration {
 
 
 
-    public CustomConfiguration(File file, HigePlugin plugin) {
+    public CustomConfiguration(File file, FeastPlugin plugin) {
         this.file = file;
         try {
             if (!file.exists()) {

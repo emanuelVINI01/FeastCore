@@ -1,7 +1,7 @@
 package com.emanuelvini.feastcore.bukkit.loader.finder;
 
 import com.emanuelvini.feastcore.bukkit.MainHige;
-import com.emanuelvini.feastcore.bukkit.api.plugin.HigePlugin;
+import com.emanuelvini.feastcore.bukkit.api.plugin.FeastPlugin;
 import lombok.AllArgsConstructor;
 import lombok.val;
 import org.bukkit.Bukkit;
@@ -15,9 +15,9 @@ public class PluginFinder {
 
     private MainHige plugin;
 
-    private final Map<String, HigePlugin> loadedPlugins = new HashMap<>();
+    private final Map<String, FeastPlugin> loadedPlugins = new HashMap<>();
 
-    private final Map<String, HigePlugin> enabledPlugins = new HashMap<>();
+    private final Map<String, FeastPlugin> enabledPlugins = new HashMap<>();
 
     public void loadAll() {
         val pluginsDirectory = new File(plugin.getDataFolder(), "plugins");
@@ -80,10 +80,10 @@ public class PluginFinder {
 
             val plugin = Bukkit.getPluginManager().loadPlugin(file);
             ;
-            if (!(plugin instanceof HigePlugin)) {
+            if (!(plugin instanceof FeastPlugin)) {
                 Bukkit.getConsoleSender().
                         sendMessage(String.format(
-                                "§9[FeastCore] §cOcorreu um erro ao carregar o plugin §f%s§c. Ele não e um plugin Hige.",
+                                "§9[FeastCore] §cOcorreu um erro ao carregar o plugin §f%s§c. Ele não e um plugin Feast.",
                                 file.getName()));
                 try {
                     Bukkit.getPluginManager().disablePlugin(plugin);
@@ -91,7 +91,7 @@ public class PluginFinder {
                 }
                 return;
             }
-            val higePlugin = (HigePlugin) plugin;
+            val higePlugin = (FeastPlugin) plugin;
             higePlugin.setupDependencies();
             loadedPlugins.put(plugin.getName(), higePlugin);
             Bukkit.getConsoleSender().
