@@ -23,7 +23,7 @@ Centro de todos plugins do Hige (API)
     
 package com.emanuelvini.higecrates;
 
-import com.emanuelvini.higecore.bukkit.api.plugin.HigePlugin;
+import com.emanuelvini.feastcore.bukkit.api.plugin.HigePlugin;
 import com.emanuelvini.higecrates.manager.MessageManager;
 import lombok.Getter;
 

@@ -1,5 +1,5 @@
-name: HigeCore
-main: com.emanuelvini.higecore.bukkit.MainHige
+name: FeastCore
+main: com.emanuelvini.feastcore.bukkit.MainHige
 version: 0.5-ALPHA
 softdepend:
   - SmartInvs

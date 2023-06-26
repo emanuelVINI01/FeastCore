@@ -6,8 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="HigeCore" />
+        <module name="FeastCore" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="HigeCore" target="8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

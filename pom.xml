@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.emanuelvini</groupId>
-    <artifactId>HigeCore</artifactId>
+    <artifactId>FeastCore</artifactId>
     <version>0.5-ALPHA</version>
 
     <properties>
