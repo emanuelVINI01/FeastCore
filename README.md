@@ -1,5 +1,5 @@
-# HigeCore
-Centro de todos plugins do Hige (API)
+# FeastCore
+Centro de todos plugins do Feast (API)
 
 <h1><a href="https://app.codacy.com/gh/emanuelVINI01/HigeCore/dashboard?branch=master">Qualidade de código: Codacy</a></h1>
 
