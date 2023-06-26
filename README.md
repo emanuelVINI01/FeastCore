@@ -13,18 +13,18 @@ Centro de todos plugins do Feast (API)
 </div>
 
 <h3>
- Você precisa por o plugin que usa a API em HigeCore/plugins.<br/>
- Os arquivos salvos ficam em HigeCore/plugins/plugin/arquivo.yml
+ Você precisa por o plugin que usa a API em FeastCore/plugins.<br/>
+ Os arquivos salvos ficam em FeastCore/plugins/plugin/arquivo.yml
 </h3>
 
 <h2>Exemplo:</h2>
 
 ```java
     
-package com.emanuelvini.higecrates;
+package com.emanuelvini.feastcrates;
 
-import com.emanuelvini.higecore.bukkit.api.plugin.HigePlugin;
-import com.emanuelvini.higecrates.manager.MessageManager;
+import com.emanuelvini.feastcore.bukkit.api.plugin.HigePlugin;
+import com.emanuelvini.feastcrates.manager.MessageManager;
 import lombok.Getter;
 
 public class MainCrates extends HigePlugin {
