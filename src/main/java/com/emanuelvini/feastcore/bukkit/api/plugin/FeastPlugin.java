@@ -1,14 +1,16 @@
 package com.emanuelvini.feastcore.bukkit.api.plugin;
 
-import com.emanuelvini.feastcore.bukkit.MainHige;
+import com.emanuelvini.feastcore.bukkit.MainFeast;
 import com.emanuelvini.feastcore.bukkit.api.plugin.config.CustomConfiguration;
 import com.emanuelvini.feastcore.bukkit.api.plugin.log.Logging;
 import com.zaxxer.hikari.HikariDataSource;
 import lombok.Getter;
 import lombok.val;
+import org.bukkit.event.Event;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
+import java.util.function.Consumer;
 
 public class FeastPlugin extends JavaPlugin {
 
@@ -34,12 +36,21 @@ public class FeastPlugin extends JavaPlugin {
     }
 
     public final void addDependency(String name, String url) {
-        MainHige.getInstance().getDependencyFinder().
+        MainFeast.getInstance().getDependencyFinder().
                 addDependency(name, url);
     }
 
+    public final void awaitEvent(Event event, Consumer<Event> consumer) {
+        MainFeast.getInstance().getEventFinder().awaitEvent(
+                event.getClass(),
+                consumer,
+                this
+        );
+    }
+
+
     public final HikariDataSource getMySQL() {
-        return MainHige.getInstance().getMysql();
+        return MainFeast.getInstance().getMysql();
     }
 
 
@@ -48,7 +59,7 @@ public class FeastPlugin extends JavaPlugin {
                 new File(getDataFolder(), name);
         val customConfiguration =
                 new CustomConfiguration(configurationFile, this);
-        if (autoSave) MainHige.getInstance().
+        if (autoSave) MainFeast.getInstance().
                 getConfigurationAutoSaver().
                 addConfigurationToAutoSave(customConfiguration, this);
         return customConfiguration;

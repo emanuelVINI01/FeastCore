@@ -1,5 +1,5 @@
 name: FeastCore
-main: com.emanuelvini.feastcore.bukkit.MainHige
+main: com.emanuelvini.feastcore.bukkit.MainFeast
 version: 0.5-ALPHA
 softdepend:
   - SmartInvs

@@ -1,6 +1,6 @@
 package com.emanuelvini.feastcore.bukkit.loader.finder;
 
-import com.emanuelvini.feastcore.bukkit.MainHige;
+import com.emanuelvini.feastcore.bukkit.MainFeast;
 import com.emanuelvini.feastcore.bukkit.api.plugin.FeastPlugin;
 import lombok.AllArgsConstructor;
 import lombok.val;
@@ -13,7 +13,7 @@ import java.util.Map;
 @AllArgsConstructor
 public class PluginFinder {
 
-    private MainHige plugin;
+    private MainFeast plugin;
 
     private final Map<String, FeastPlugin> loadedPlugins = new HashMap<>();
 

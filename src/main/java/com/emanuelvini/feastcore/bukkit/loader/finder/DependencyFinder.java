@@ -1,12 +1,11 @@
 package com.emanuelvini.feastcore.bukkit.loader.finder;
 
 
-import com.emanuelvini.feastcore.bukkit.MainHige;
+import com.emanuelvini.feastcore.bukkit.MainFeast;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.val;
 import org.bukkit.Bukkit;
-import org.bukkit.plugin.Plugin;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -19,7 +18,7 @@ import java.util.HashMap;
 public class DependencyFinder {
 
 
-    private final MainHige plugin;
+    private final MainFeast plugin;
 
 
     private final HashMap<String, String> dependencies = new HashMap<>();
