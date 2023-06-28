@@ -1,5 +1,6 @@
 package com.emanuelvini.feastcore.bukkit.loader.finder.events.model;
 
+import com.emanuelvini.feastcore.bukkit.api.plugin.FeastPlugin;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,7 +14,10 @@ public class AwaitingEvent {
 
     private Class<? extends Event> eventType;
 
+    private FeastPlugin plugin;
+
     private Consumer<Event> on;
+
 
 
 

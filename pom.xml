@@ -43,6 +43,11 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
+            <groupId>io.github.classgraph</groupId>
+            <artifactId>classgraph</artifactId>
+            <version>4.8.160</version>
+        </dependency>
+        <dependency>
             <groupId>com.boydti.fawe</groupId>
             <artifactId>fawe</artifactId>
             <version>21.a03.09-a5e5590-1285-22.3.8</version>

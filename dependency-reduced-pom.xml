@@ -83,7 +83,7 @@
       <artifactId>fawe</artifactId>
       <version>21.a03.09-a5e5590-1285-22.3.8</version>
       <scope>system</scope>
-      <systemPath>C:\Users\emanuel\Desktop\Feast\FeastCore/lib/fawe.jar</systemPath>
+      <systemPath>C:\Users\emanuel\Desktop\Feast\plugins\FeastCore/lib/fawe.jar</systemPath>
     </dependency>
   </dependencies>
   <properties>

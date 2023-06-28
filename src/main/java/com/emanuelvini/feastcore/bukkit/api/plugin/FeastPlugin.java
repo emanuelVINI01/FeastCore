@@ -42,7 +42,7 @@ public class FeastPlugin extends JavaPlugin {
 
     public final void awaitEvent(Event event, Consumer<Event> consumer) {
         MainFeast.getInstance().getEventFinder().awaitEvent(
-                event.getClass(),
+                event,
                 consumer,
                 this
         );
