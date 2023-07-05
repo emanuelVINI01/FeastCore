@@ -30,7 +30,7 @@ public class DependencyFinder implements IDependencyFinder {
 
     private final ArrayList<Dependency> dependencies = new ArrayList<>();
     
-    private final BridgeLogger logger = MainFeast.getInstance().getLogger();
+    private final BridgeLogger logger = MainBungee.getBridgeLogger();
 
     @Override
     public void addDependency(String name, String url) {

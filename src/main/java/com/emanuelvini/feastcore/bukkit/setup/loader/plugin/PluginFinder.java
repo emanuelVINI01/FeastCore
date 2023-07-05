@@ -1,6 +1,7 @@
 package com.emanuelvini.feastcore.bukkit.setup.loader.plugin;
 
 import com.emanuelvini.feastcore.bukkit.api.BukkitFeastPlugin;
+import com.emanuelvini.feastcore.bukkit.setup.MainBukkit;
 import com.emanuelvini.feastcore.common.api.FeastPlugin;
 import com.emanuelvini.feastcore.common.loader.MainFeast;
 import com.emanuelvini.feastcore.common.loader.plugin.IPluginFinder;
@@ -19,7 +20,7 @@ public class PluginFinder implements IPluginFinder {
 
     private JavaPlugin plugin;
 
-    private static BridgeLogger logger = MainFeast.getInstance().getLogger();
+    private static BridgeLogger logger = MainBukkit.getBrideLogger();
 
     private final Map<String, BukkitFeastPlugin> loadedPlugins = new HashMap<>();
 

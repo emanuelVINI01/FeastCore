@@ -21,18 +21,22 @@ public class MainBukkit extends JavaPlugin {
     private static MainFeast instance;
 
     @Getter
+    private static BridgeLogger brideLogger;
+
+    @Getter
     private static MainBukkit bukkitPluginInstance;
 
     @Override
     public void onEnable() {
         bukkitPluginInstance = this;
         saveDefaultConfig();
-        val logger = new BridgeLogger(true);
+
+        brideLogger = new BridgeLogger(true);
 
         if (Bukkit.getPluginManager().getPlugin("FastAsyncWorldEdit") == null ||
                 !Bukkit.getPluginManager().getPlugin("FastAsyncWorldEdit").isEnabled()) {
 
-            logger.log("§c§lERRO FATAL! §cFastAsyncWorldEdit não encontrado.");
+            brideLogger.log("§c§lERRO FATAL! §cFastAsyncWorldEdit não encontrado.");
             Bukkit.getPluginManager().disablePlugin(this);
             return;
 
@@ -40,8 +44,7 @@ public class MainBukkit extends JavaPlugin {
 
 
 
-        Bukkit.getConsoleSender().
-                sendMessage("§bInicializando MySQL...");
+        brideLogger.log("§bInicializando MySQL...");
 
         SQLConnector mysql;
 
@@ -54,15 +57,15 @@ public class MainBukkit extends JavaPlugin {
                     username(mysqlSection.getString("user")).
                     password(mysqlSection.getString("password")).build()
             );
-            logger.log(
+            brideLogger.log(
                             "§aMySQL inicializado com sucesso!"
                     );
         } catch (Exception e) {
-            logger.log(
+            brideLogger.log(
                             "§cOcorreu um erro ao inicializar o MySQL. Verifique os dados na configurações."
                     );
 
-            logger.log("§cInforme o erro abaixo: ");
+            brideLogger.log("§cInforme o erro abaixo: ");
             e.printStackTrace();
             Bukkit.getPluginManager().disablePlugin(this);
             return;
@@ -74,7 +77,7 @@ public class MainBukkit extends JavaPlugin {
         val pluginFinder = new PluginFinder(this);
         val eventFinder = new EventFinder();
 
-        instance = new MainFeast(dependencyFinder, eventFinder, pluginFinder, mysql, logger, true);
+        instance = new MainFeast(dependencyFinder, eventFinder, pluginFinder, mysql, brideLogger, true);
         instance.enable();
     }
 

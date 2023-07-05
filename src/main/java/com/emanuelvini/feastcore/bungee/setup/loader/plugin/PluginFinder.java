@@ -24,7 +24,7 @@ public class PluginFinder implements IPluginFinder {
 
     private final Map<String, BungeeFeastPlugin> enabledPlugins = new HashMap<>();
 
-    private final BridgeLogger logger = MainFeast.getInstance().getLogger();
+    private final BridgeLogger logger = MainBungee.getBridgeLogger();
 
     @Override
     public void loadAll() {

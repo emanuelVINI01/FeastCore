@@ -34,7 +34,8 @@ public class MainBungee extends Plugin {
 
     @ConfigField("mysql.password") private String password;
 
-
+    @Getter
+    private static BridgeLogger bridgeLogger;
 
     @Override
     public void onEnable() {
@@ -43,7 +44,7 @@ public class MainBungee extends Plugin {
 
         val dependencyFinder = new DependencyFinder(this);
         val pluginFinder = new PluginFinder();
-        val logger = new BridgeLogger(false);
+        bridgeLogger = new BridgeLogger(false);
 
 
         SQLConnector mysql;
@@ -53,15 +54,15 @@ public class MainBungee extends Plugin {
                     MySQLConfiguration.builder().
                             host(host).port(port).database(database).username(username).password(password).build()
             );
-            logger.log(
+            bridgeLogger.log(
                     "§aMySQL inicializado com sucesso!"
             );
         } catch (Exception e) {
-            logger.log(
+            bridgeLogger.log(
                     "§cOcorreu um erro ao inicializar o MySQL. Verifique os dados na configurações."
             );
 
-            logger.log("§cInforme o erro abaixo: ");
+            bridgeLogger.log("§cInforme o erro abaixo: ");
             e.printStackTrace();
             getProxy().stop("MySQL Inválido ----> FeastCore");
             return;
@@ -69,7 +70,7 @@ public class MainBungee extends Plugin {
 
 
 
-        instance = new MainFeast(dependencyFinder, null, pluginFinder, mysql, logger, false);
+        instance = new MainFeast(dependencyFinder, null, pluginFinder, mysql, bridgeLogger, false);
         instance.enable();
     }
 
