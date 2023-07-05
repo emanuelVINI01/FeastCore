@@ -64,7 +64,7 @@ public class DependencyFinder implements IDependencyFinder {
     }
 
     @Override
-    @SneakyThrows
+    @SneakyThrows 
     public void downloadAndLoadDependencies() {
         val dependenciesDirectory = new File(plugin.getDataFolder(), "dependencies");
         if (!dependenciesDirectory.exists()) dependenciesDirectory.mkdirs();

@@ -7,8 +7,7 @@ import com.emanuelvini.feastcore.common.logging.BridgeLogger;
 import com.henryfabio.sqlprovider.connector.SQLConnector;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.val;
-import org.bukkit.Bukkit;
+
 
 @Getter
 @AllArgsConstructor
@@ -32,19 +31,30 @@ public class MainFeast {
     public void enable() {
 
         instance = this;
-        
+
+
         logger.log("\n" +
-                "§e___________                     __    _________                        ____   ________      .________\n" +
-                "§e\\_   _____/___ _____    _______/  |_  \\_   ___ \\  ___________   ____   \\   \\ /   /_   |     |   ____/\n" +
-                "§e |    __)/ __ \\\\__  \\  /  ___/\\   __\\ /    \\  \\/ /  _ \\_  __ \\_/ __ \\   \\   Y   / |   |     |____  \\ \n" +
-                "§e |     \\\\  ___/ / __ \\_\\___ \\  |  |   \\     \\___(  <_> )  | \\/\\  ___/    \\     /  |   |     /       \\\n" +
-                "§e \\___  / \\___  >____  /____  > |__|    \\______  /\\____/|__|    \\___  >    \\___/   |___| /\\ /______  /\n" +
-                "§e     \\/      \\/     \\/     \\/                 \\/                   \\/                   \\/        \\/ \n" +
-                "§e By emanuelVINI. §5loja.redefeast.com.br");
+                "§5______                    _     _____                      _   _  __  \n" +
+                "§5|  ___|                  | |   /  __ \\                    | | | |/  | \n" +
+                "§5| |_     ___   __ _  ___ | |_  | /  \\/  ___   _ __   ___  | | | |`| | \n" +
+                "§5|  _|   / _ \\ / _` |/ __|| __| | |     / _ \\ | '__| / _ \\ | | | | | | \n" +
+                "§5| |    |  __/| (_| |\\__ \\| |_  | \\__/\\| (_) || |   |  __/ \\ \\_/ /_| |_\n" +
+                "§5\\_|     \\___| \\__,_||___/ \\__|  \\____/ \\___/ |_|    \\___|  \\___/ \\___/\n" +
+                "                                                                      \n" +
+                "                                                                      \n" + "" +
+                "§5______ __   __                                              _  _   _  _____  _   _  _____ \n" +
+                "§5| ___ \\\\ \\ / /                                             | || | | ||_   _|| \\ | ||_   _|\n" +
+                "§5| |_/ / \\ V /    ___  _ __ ___    __ _  _ __   _   _   ___ | || | | |  | |  |  \\| |  | |  \n" +
+                "§5| ___ \\  \\ /    / _ \\| '_ ` _ \\  / _` || '_ \\ | | | | / _ \\| || | | |  | |  | . ` |  | |  \n" +
+                "§5| |_/ /  | |   |  __/| | | | | || (_| || | | || |_| ||  __/| |\\ \\_/ / _| |_ | |\\  | _| |_ \n" +
+                "§5\\____/   \\_/    \\___||_| |_| |_| \\__,_||_| |_| \\__,_| \\___||_| \\___/  \\___/ \\_| \\_/ \\___/ \n" +
+                "                                                                                          \n" +
+                "                                                                                          ");
+
+
 
         
         logger.log("§6Inicializando dependências...");
-
         //Adicionando as dependências necessárias pelo Core
 
         if (bukkit)
@@ -62,11 +72,20 @@ public class MainFeast {
 
 
     public void disable() {
+        logger.log("\n" +
+                "§c______                    _     _____                      _   _  __  \n" +
+                "§c|  ___|                  | |   /  __ \\                    | | | |/  | \n" +
+                "§c| |_     ___   __ _  ___ | |_  | /  \\/  ___   _ __   ___  | | | |`| | \n" +
+                "§c|  _|   / _ \\ / _` |/ __|| __| | |     / _ \\ | '__| / _ \\ | | | | | | \n" +
+                "§c| |    |  __/| (_| |\\__ \\| |_  | \\__/\\| (_) || |   |  __/ \\ \\_/ /_| |_\n" +
+                "§c\\_|     \\___| \\__,_||___/ \\__|  \\____/ \\___/ |_|    \\___|  \\___/ \\___/\n" +
+                "                                                                      \n" +
+                "                                                                      \n");
+
         logger.log("§eDesabilitando plugins...");
         pluginFinder.disableAll();
         logger.log("§eDesabilitando dependências...");
         dependencyFinder.disableAll();
-        Bukkit.getConsoleSender().
-                sendMessage("§cPlugin desligado com sucesso!");
+        logger.log("§cPlugin desligado com sucesso!");
     }
 }

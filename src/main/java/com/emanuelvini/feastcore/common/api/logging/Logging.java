@@ -12,8 +12,8 @@ public class Logging {
 
     private final FeastPlugin plugin;
 
-    public void info(String message, String color) {
-        logger.log(String.format("§d[%s] §f: §%s%s", plugin.getName(), color, message));
+    public void log(String message, String color) {
+        logger.log(String.format("§d[%s]§f: §%s%s", plugin.getName(), color, message));
     }
 
 }

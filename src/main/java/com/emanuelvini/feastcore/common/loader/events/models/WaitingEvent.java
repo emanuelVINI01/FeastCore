@@ -12,7 +12,7 @@ import java.util.function.Predicate;
 
 @AllArgsConstructor
 @Getter
-public class AwaitingEvent {
+public class WaitingEvent {
 
     private Class<? extends Event> eventType;
 
