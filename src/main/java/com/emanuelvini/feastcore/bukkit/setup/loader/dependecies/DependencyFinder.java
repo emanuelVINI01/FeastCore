@@ -1,8 +1,10 @@
 package com.emanuelvini.feastcore.bukkit.setup.loader.dependecies;
 
 import com.emanuelvini.feastcore.bukkit.setup.MainBukkit;
+import com.emanuelvini.feastcore.common.loader.MainFeast;
 import com.emanuelvini.feastcore.common.loader.dependecies.models.Dependency;
 import com.emanuelvini.feastcore.common.loader.dependecies.IDependencyFinder;
+import com.emanuelvini.feastcore.common.logging.BridgeLogger;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.val;
@@ -24,6 +26,8 @@ public class DependencyFinder implements IDependencyFinder {
 
     private final ArrayList<Dependency> dependencies = new ArrayList<>();
 
+    private final BridgeLogger logger = MainFeast.getInstance().getLogger();
+
     @Override
     public void addDependency(String name, String url) {
 
@@ -42,14 +46,12 @@ public class DependencyFinder implements IDependencyFinder {
                try {
                    Bukkit.getPluginManager().disablePlugin(plugin);
 
-                   Bukkit.getConsoleSender().
-                           sendMessage(String.format(
-                                   "§9[FeastCore] §aDependência §f%s§a desabilitada com sucesso!", dependency.getName())
+                   logger.log(String.format(
+                                   "§aDependência §f%s§a desabilitada com sucesso!", dependency.getName())
                            );
                } catch (Exception e) {
-                   Bukkit.getConsoleSender().
-                           sendMessage(String.format
-                                   ("§9[FeastCore] §cOcorreu um erro ao desabilitar a dependência §f%s§c:", dependency.getName())
+                   logger.log(String.format
+                                   ("§cOcorreu um erro ao desabilitar a dependência §f%s§c:", dependency.getName())
                            );
                    e.printStackTrace();
                }
@@ -76,18 +78,16 @@ public class DependencyFinder implements IDependencyFinder {
                 );
                 FileOutputStream fos = new FileOutputStream(dependencyFile);
                 fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
-                Bukkit.getConsoleSender().
-                        sendMessage(String.format(
-                                "§9[FeastCore] §aDependência §f%s§a baixada com sucesso!",
+                logger.log(String.format(
+                                "§aDependência §f%s§a baixada com sucesso!",
                                 name));
             }
             val plugin = Bukkit.getPluginManager().loadPlugin(dependencyFile);
             if (!plugin.isEnabled()) {
                 Bukkit.getPluginManager().enablePlugin(plugin);
             }
-            Bukkit.getConsoleSender().
-                    sendMessage(String.format(
-                            "§9[FeastCore] §aDependência §f%s§a carregada com sucesso!",
+            logger.log(String.format(
+                            "§aDependência §f%s§a carregada com sucesso!",
                             name));
         }
     }

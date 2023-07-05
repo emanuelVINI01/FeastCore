@@ -32,11 +32,26 @@ public class MainFeast {
     public void enable() {
 
         instance = this;
+        
+        logger.log("§e\n" +
+                "___________                     __    _________                        ____   ________      .________\n" +
+                "\\_   _____/___ _____    _______/  |_  \\_   ___ \\  ___________   ____   \\   \\ /   /_   |     |   ____/\n" +
+                " |    __)/ __ \\\\__  \\  /  ___/\\   __\\ /    \\  \\/ /  _ \\_  __ \\_/ __ \\   \\   Y   / |   |     |____  \\ \n" +
+                " |     \\\\  ___/ / __ \\_\\___ \\  |  |   \\     \\___(  <_> )  | \\/\\  ___/    \\     /  |   |     /       \\\n" +
+                " \\___  / \\___  >____  /____  > |__|    \\______  /\\____/|__|    \\___  >    \\___/   |___| /\\ /______  /\n" +
+                "     \\/      \\/     \\/     \\/                 \\/                   \\/                   \\/        \\/ \n");
 
-        logger.log("§9[FeastCore] §6Inicializando dependências...");
+        logger.log("§e\n" +
+                "_______________.___. ___________   _____      _____    _______   ____ ______________.____ ____   ____.___ _______  .___ \n" +
+                "\\______   \\__  |   | \\_   _____/  /     \\    /  _  \\   \\      \\ |    |   \\_   _____/|    |\\   \\ /   /|   |\\      \\ |   |\n" +
+                " |    |  _//   |   |  |    __)_  /  \\ /  \\  /  /_\\  \\  /   |   \\|    |   /|    __)_ |    | \\   Y   / |   |/   |   \\|   |\n" +
+                " |    |   \\\\____   |  |        \\/    Y    \\/    |    \\/    |    \\    |  / |        \\|    |__\\     /  |   /    |    \\   |\n" +
+                " |______  // ______| /_______  /\\____|__  /\\____|__  /\\____|__  /______/ /_______  /|_______ \\___/   |___\\____|__  /___|\n" +
+                "        \\/ \\/                \\/         \\/         \\/         \\/                 \\/         \\/                   \\/     \n");
+        
+        logger.log("§6Inicializando dependências...");
 
         //Adicionando as dependências necessárias pelo Core
-
 
         if (bukkit)
             dependencyFinder.addDependency("NBTAPI", "https://cdn-raw.modrinth.com/data/nfGCP9fk/versions/wtKsBSun/item-nbt-api-plugin-2.11.3.jar");
@@ -48,16 +63,16 @@ public class MainFeast {
 
         pluginFinder.enableAll();
 
-        logger.log("§9[FeastCore] §aPlugins inicializados com sucesso!");
+        logger.log("§aPlugins inicializados com sucesso!");
     }
 
 
     public void disable() {
-        logger.log("§9[FeastCore] §eDesabilitando plugins...");
+        logger.log("§eDesabilitando plugins...");
         pluginFinder.disableAll();
-        logger.log("§9[FeastCore] §eDesabilitando dependências...");
+        logger.log("§eDesabilitando dependências...");
         dependencyFinder.disableAll();
         Bukkit.getConsoleSender().
-                sendMessage("§9[FeastCore] §cPlugin desligado com sucesso!");
+                sendMessage("§cPlugin desligado com sucesso!");
     }
 }

@@ -26,16 +26,13 @@ public class MainBukkit extends JavaPlugin {
     @Override
     public void onEnable() {
         bukkitPluginInstance = this;
-
-        super.onEnable();
         saveDefaultConfig();
-
+        val logger = new BridgeLogger(true);
 
         if (Bukkit.getPluginManager().getPlugin("FastAsyncWorldEdit") == null ||
                 !Bukkit.getPluginManager().getPlugin("FastAsyncWorldEdit").isEnabled()) {
 
-            Bukkit.getConsoleSender().
-                    sendMessage("§9[FeastCore] §c§lERRO FATAL! §cFastAsyncWorldEdit não encontrado.");
+            logger.log("§c§lERRO FATAL! §cFastAsyncWorldEdit não encontrado.");
             Bukkit.getPluginManager().disablePlugin(this);
             return;
 
@@ -44,7 +41,7 @@ public class MainBukkit extends JavaPlugin {
 
 
         Bukkit.getConsoleSender().
-                sendMessage("§9[FeastCore] §bInicializando MySQL...");
+                sendMessage("§bInicializando MySQL...");
 
         SQLConnector mysql;
 
@@ -57,18 +54,15 @@ public class MainBukkit extends JavaPlugin {
                     username(mysqlSection.getString("user")).
                     password(mysqlSection.getString("password")).build()
             );
-            Bukkit.getConsoleSender().
-                    sendMessage(
-                            "§9[FeastCore] §aMySQL inicializado com sucesso!"
+            logger.log(
+                            "§aMySQL inicializado com sucesso!"
                     );
         } catch (Exception e) {
-            Bukkit.getConsoleSender().
-                    sendMessage(
-                            "§9[FeastCore] §cOcorreu um erro ao inicializar o MySQL. Verifique os dados na configurações."
+            logger.log(
+                            "§cOcorreu um erro ao inicializar o MySQL. Verifique os dados na configurações."
                     );
 
-            Bukkit.getConsoleSender().
-                    sendMessage("§9[FeastCore] §cInforme o erro abaixo: ");
+            logger.log("§cInforme o erro abaixo: ");
             e.printStackTrace();
             Bukkit.getPluginManager().disablePlugin(this);
             return;
@@ -80,7 +74,7 @@ public class MainBukkit extends JavaPlugin {
         val pluginFinder = new PluginFinder(this);
         val eventFinder = new EventFinder();
 
-        instance = new MainFeast(dependencyFinder, eventFinder, pluginFinder, mysql, new BridgeLogger(true), true);
+        instance = new MainFeast(dependencyFinder, eventFinder, pluginFinder, mysql, logger, true);
         instance.enable();
     }
 

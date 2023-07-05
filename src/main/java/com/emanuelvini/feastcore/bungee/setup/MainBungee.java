@@ -8,9 +8,11 @@ import com.emanuelvini.feastcore.common.storage.MySQL;
 import com.emanuelvini.feastcore.common.storage.configuration.MySQLConfiguration;
 import com.henryfabio.minecraft.configinjector.common.annotations.ConfigField;
 import com.henryfabio.minecraft.configinjector.common.annotations.ConfigFile;
+import com.henryfabio.sqlprovider.connector.SQLConnector;
 import lombok.Getter;
 import lombok.val;
 import net.md_5.bungee.api.plugin.Plugin;
+import org.bukkit.Bukkit;
 
 @ConfigFile("config.yml")
 
@@ -41,13 +43,34 @@ public class MainBungee extends Plugin {
 
         val dependencyFinder = new DependencyFinder(this);
         val pluginFinder = new PluginFinder();
+        val logger = new BridgeLogger(false);
 
 
-        val mysql = MySQL.of(
-                MySQLConfiguration.builder().
-                        host(host).port(port).database(database).username(username).password(password).build()
-        );
-        instance = new MainFeast(dependencyFinder, null, pluginFinder, mysql, new BridgeLogger(false), false);
+        SQLConnector mysql;
+
+        try {
+            mysql = MySQL.of(
+                    MySQLConfiguration.builder().
+                            host(host).port(port).database(database).username(username).password(password).build()
+            );
+            logger.log(
+                    "§aMySQL inicializado com sucesso!"
+            );
+        } catch (Exception e) {
+            logger.log(
+                    "§cOcorreu um erro ao inicializar o MySQL. Verifique os dados na configurações."
+            );
+
+            logger.log("§cInforme o erro abaixo: ");
+            e.printStackTrace();
+            getProxy().stop("MySQL Inválido ----> FeastCore");
+            return;
+        }
+
+
+
+        instance = new MainFeast(dependencyFinder, null, pluginFinder, mysql, logger, false);
+        instance.enable();
     }
 
     @Override

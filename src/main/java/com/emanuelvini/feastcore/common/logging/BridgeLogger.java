@@ -12,9 +12,9 @@ public class BridgeLogger {
 
     public void log(String... messages) {
         if (bukkit) {
-            Bukkit.getConsoleSender().sendMessage(messages);
+            Bukkit.getConsoleSender().sendMessage("§9[FeastCore] "+ String.join(" ", messages));
         } else {
-            ProxyServer.getInstance().getConsole().sendMessage(new TextComponent(String.join("\n", messages)));
+            ProxyServer.getInstance().getConsole().sendMessage(new TextComponent("§9[FeastCore] "+ String.join(" ", messages)));
         }
     }
 

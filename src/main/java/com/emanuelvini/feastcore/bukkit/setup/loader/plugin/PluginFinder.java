@@ -2,7 +2,9 @@ package com.emanuelvini.feastcore.bukkit.setup.loader.plugin;
 
 import com.emanuelvini.feastcore.bukkit.api.BukkitFeastPlugin;
 import com.emanuelvini.feastcore.common.api.FeastPlugin;
+import com.emanuelvini.feastcore.common.loader.MainFeast;
 import com.emanuelvini.feastcore.common.loader.plugin.IPluginFinder;
+import com.emanuelvini.feastcore.common.logging.BridgeLogger;
 import lombok.AllArgsConstructor;
 import lombok.val;
 import org.bukkit.Bukkit;
@@ -17,12 +19,18 @@ public class PluginFinder implements IPluginFinder {
 
     private JavaPlugin plugin;
 
+    private static BridgeLogger logger = MainFeast.getInstance().getLogger();
+
     private final Map<String, BukkitFeastPlugin> loadedPlugins = new HashMap<>();
 
     private final Map<String, BukkitFeastPlugin> enabledPlugins = new HashMap<>();
 
+
+
+
     @Override
     public void loadAll() {
+
         val pluginsDirectory = new File(plugin.getDataFolder(), "plugins");
         if (!pluginsDirectory.exists()) pluginsDirectory.mkdirs();
         for (File pluginFile : pluginsDirectory.listFiles()) {
@@ -53,9 +61,9 @@ public class PluginFinder implements IPluginFinder {
                 Bukkit.getPluginManager().disablePlugin(plugin);
                 loadedPlugins.put(name, plugin);
                 enabledPlugins.remove(name);
-                Bukkit.getConsoleSender().sendMessage(String.format("§9[FeastCore] §aPlugin §f%s§a desabilitado com sucesso!", name));
+                Bukkit.getConsoleSender().sendMessage(String.format("§aPlugin §f%s§a desabilitado com sucesso!", name));
             } catch (Exception e) {
-                Bukkit.getConsoleSender().sendMessage(String.format("§9[FeastCore] §cOcorreu um erro ao desabilitar o plugin §f%s§c:", name));
+                Bukkit.getConsoleSender().sendMessage(String.format("§cOcorreu um erro ao desabilitar o plugin §f%s§c:", name));
                 e.printStackTrace();
             }
         }
@@ -69,14 +77,12 @@ public class PluginFinder implements IPluginFinder {
             Bukkit.getPluginManager().enablePlugin(plugin);
             loadedPlugins.remove(name);
             enabledPlugins.put(name, plugin);
-            Bukkit.getConsoleSender().
-                    sendMessage(String.format(
-                            "§9[FeastCore] §aPlugin §f%s§a habilitado com sucesso!",
+            logger.log(String.format(
+                            "§aPlugin §f%s§a habilitado com sucesso!",
                             name));
         } catch (Exception e) {
-            Bukkit.getConsoleSender().
-                    sendMessage(String.format(
-                            "§9[FeastCore] §cOcorreu um erro ao habilitar o plugin §f%s§c:",
+            logger.log(String.format(
+                            "§cOcorreu um erro ao habilitar o plugin §f%s§c:",
                             name));
             e.printStackTrace();
         }
@@ -90,7 +96,7 @@ public class PluginFinder implements IPluginFinder {
             if (!(plugin instanceof BukkitFeastPlugin)) {
                 Bukkit.getConsoleSender().
                         sendMessage(String.format(
-                                "§9[FeastCore] §cOcorreu um erro ao carregar o plugin §f%s§c. Ele não e um plugin Feast.",
+                                "§cOcorreu um erro ao carregar o plugin §f%s§c. Ele não e um plugin Feast.",
                                 file.getName()));
                 try {
                     Bukkit.getPluginManager().disablePlugin(plugin);
@@ -101,15 +107,13 @@ public class PluginFinder implements IPluginFinder {
             val feastPlugin = (BukkitFeastPlugin) plugin;
             feastPlugin.setupDependencies();
             loadedPlugins.put(plugin.getName(), feastPlugin);
-            Bukkit.getConsoleSender().
-                    sendMessage(String.format(
-                            "§9[FeastCore] §aPlugin §f%s§a carregado com sucesso!",
+            logger.log(String.format(
+                            "§aPlugin §f%s§a carregado com sucesso!",
                             file.getName()));
 
         } catch (Exception e) {
-            Bukkit.getConsoleSender().
-                    sendMessage(String.format(
-                            "§9[FeastCore] §cOcorreu um erro ao carregar o plugin §f%s§c:",
+            logger.log(String.format(
+                            "§cOcorreu um erro ao carregar o plugin §f%s§c:",
                             file.getName()));
             e.printStackTrace();
         }

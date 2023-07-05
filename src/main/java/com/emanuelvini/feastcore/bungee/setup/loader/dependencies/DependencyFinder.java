@@ -3,8 +3,10 @@ package com.emanuelvini.feastcore.bungee.setup.loader.dependencies;
 
 import com.emanuelvini.feastcore.bungee.setup.MainBungee;
 import com.emanuelvini.feastcore.bungee.setup.loader.util.PluginManager;
+import com.emanuelvini.feastcore.common.loader.MainFeast;
 import com.emanuelvini.feastcore.common.loader.dependecies.IDependencyFinder;
 import com.emanuelvini.feastcore.common.loader.dependecies.models.Dependency;
+import com.emanuelvini.feastcore.common.logging.BridgeLogger;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.val;
@@ -27,6 +29,8 @@ public class DependencyFinder implements IDependencyFinder {
 
 
     private final ArrayList<Dependency> dependencies = new ArrayList<>();
+    
+    private final BridgeLogger logger = MainFeast.getInstance().getLogger();
 
     @Override
     public void addDependency(String name, String url) {
@@ -47,11 +51,11 @@ public class DependencyFinder implements IDependencyFinder {
                 try {
                     PluginManager.unloadPlugin(plugin);
 
-                    ProxyServer.getInstance().getConsole().sendMessage(new TextComponent(String.format(
-                            "§9[FeastCore] §aDependência §f%s§a desabilitada com sucesso!", dependency.getName())));
+                    logger.log(String.format(
+                            "§aDependência §f%s§a desabilitada com sucesso!", dependency.getName()));
                 } catch (Exception e) {
-                    ProxyServer.getInstance().getConsole().sendMessage(new TextComponent(String.format
-                            ("§9[FeastCore] §cOcorreu um erro ao desabilitar a dependência §f%s§c:", dependency.getName())));
+                    logger.log(String.format
+                            ("§cOcorreu um erro ao desabilitar a dependência §f%s§c:", dependency.getName()));
                     e.printStackTrace();
                 }
             }
@@ -77,9 +81,9 @@ public class DependencyFinder implements IDependencyFinder {
                 );
                 FileOutputStream fos = new FileOutputStream(dependencyFile);
                 fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
-                ProxyServer.getInstance().getConsole().sendMessage(new TextComponent(String.format(
-                        "§9[FeastCore] §aDependência §f%s§a baixada com sucesso!",
-                        name)));
+                logger.log(String.format(
+                        "§aDependência §f%s§a baixada com sucesso!",
+                        name));
             }
 
             try {
@@ -87,12 +91,12 @@ public class DependencyFinder implements IDependencyFinder {
                 plugin.onLoad();
                 plugin.onEnable();
 
-                ProxyServer.getInstance().getConsole().sendMessage(new TextComponent(String.format(
-                        "§9[FeastCore] §aDependência §f%s§ahabilitada com sucesso!",
-                        name)));
+                logger.log(String.format(
+                        "§aDependência §f%s§ahabilitada com sucesso!",
+                        name));
             } catch (Exception e) {
-                ProxyServer.getInstance().getConsole().sendMessage(new TextComponent(String.format
-                        ("§9[FeastCore] §cOcorreu um erro ao habilitar a dependência §f%s§c:", dependency.getName())));
+                logger.log(String.format
+                        ("§cOcorreu um erro ao habilitar a dependência §f%s§c:", dependency.getName()));
                 e.printStackTrace();
             }
         }
