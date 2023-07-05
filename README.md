@@ -1,15 +1,15 @@
 # FeastCore
 Centro de todos plugins do Feast (API)
 
-<h1><a href="https://app.codacy.com/gh/emanuelVINI01/HigeCore/dashboard?branch=master">Qualidade de código: Codacy</a></h1>
-
 <h2> Tecnologias usadas: </h2>
 
 <div style="display: inline">
     <img width=128 height=128 alt="MySQL + HikariCP" src="https://avatars.githubusercontent.com/u/45949248?s=200&v=4"/> <h3><bold><a href="https://github.com/projectlombok/lombok"> Lombok </a> </bold>: Marcações como @Getter e @Setter, deixando o código mais limpo. </h3>
 </div>
-<div style="display: inline">
-    <img width=128 height=128 alt="MySQL + HikariCP" src="https://icons-for-free.com/iconfiles/png/512/mysql+original+wordmark-1324760553527083815.png"/> <h3><bold><a href="https://github.com/projectlombok/lombok"> HikariCP </a> </bold>: Melhora a perfomance do desempenho do JDBC. </h3>
+
+<div>
+  <h3><a href="https://github.com/henrysaantos/sql-provider">SQLProvider</h1>
+  <h3><a href="https://github.com/tr7zw/Item-NBT-API">NBTAPI</h1>
 </div>
 
 <h3>
