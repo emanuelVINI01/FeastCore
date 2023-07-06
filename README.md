@@ -26,7 +26,7 @@ package com.emanuelvini.feastcrates;
 import com.emanuelvini.feastcore.bukkit.api.plugin.BukkitFeastPlugin;
 import lombok.Getter;
 
-public class MainCrates extends BukkitFeastPlugin {
+public class MainFeast extends BukkitFeastPlugin {
 
 
     @Override
