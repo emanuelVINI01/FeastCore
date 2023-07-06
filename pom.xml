@@ -70,23 +70,10 @@
             <version>4.8.160</version>
         </dependency>
         <dependency>
-            <groupId>com.boydti.fawe</groupId>
-            <artifactId>fawe</artifactId>
-            <version>21.a03.09-a5e5590-1285-22.3.8</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/lib/fawe.jar</systemPath>
-        </dependency>
-        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>RELEASE</version>
             <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.25</version>
-            <scope>runtime</scope>
         </dependency>
     </dependencies>
     <build>
