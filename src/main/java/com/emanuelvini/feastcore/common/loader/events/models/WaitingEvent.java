@@ -25,11 +25,11 @@ public class WaitingEvent {
     private Consumer<Event> on;
 
     public void accept(Event event) {
-        on.accept(event);
+        on.accept(eventType.cast(event));
     }
 
     public boolean filter(Event event) {
-        return filter.test(event);
+        return filter.test(eventType.cast(event));
     }
 
 
