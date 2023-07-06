@@ -62,9 +62,9 @@ public class PluginFinder implements IPluginFinder {
                 Bukkit.getPluginManager().disablePlugin(plugin);
                 loadedPlugins.put(name, plugin);
                 enabledPlugins.remove(name);
-                Bukkit.getConsoleSender().sendMessage(String.format("§aPlugin §f%s§a desabilitado com sucesso!", name));
+                logger.log(String.format("§aPlugin §f%s§a desabilitado com sucesso!", name));
             } catch (Exception e) {
-                Bukkit.getConsoleSender().sendMessage(String.format("§cOcorreu um erro ao desabilitar o plugin §f%s§c:", name));
+                logger.log(String.format("§cOcorreu um erro ao desabilitar o plugin §f%s§c:", name));
                 e.printStackTrace();
             }
         }
