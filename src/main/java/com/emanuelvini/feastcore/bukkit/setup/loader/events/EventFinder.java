@@ -37,17 +37,21 @@ public class EventFinder implements IEventFinder {
         EventExecutor executor = (ignored, event) -> {
                 if (awaitingEvents.size() == 0) return;
                 if (awaitingEvents.containsKey(event.getClass())) {
-                    val eventConsumers = awaitingEvents.get(event.getClass());
+                    val eventConsumers = new ArrayList<>(awaitingEvents.get(event.getClass()));
                     if (eventConsumers.size() > 0) {
                         val notExecutedEvents = new ArrayList<WaitingEvent>();
-                        for (WaitingEvent awaitingEvent : eventConsumers) {
-                            if (awaitingEvent.filter(event)) {
-                                awaitingEvent.accept(event);
+                        val toExecuteEvents = new ArrayList<WaitingEvent>();
+                        eventConsumers.forEach(waitingEvent -> {
+                            if (waitingEvent.filter(event)) {
+                                toExecuteEvents.add(waitingEvent);
                             } else {
-                                notExecutedEvents.add(awaitingEvent);
+                                notExecutedEvents.add(waitingEvent);
                             }
-                        }
+                        });
                         awaitingEvents.put(event.getClass(), notExecutedEvents);
+                        toExecuteEvents.forEach(awaitingEvent -> {
+                            awaitingEvent.accept(event);
+                        });
                     }
                 }
             };
