@@ -1,33 +1,35 @@
-package com.emanuelvini.feastcore.bungee.setup.loader.plugin;
+package com.emanuelvini.feastcore.bukkit.setup.loader.plugin;
 
-
-import com.emanuelvini.feastcore.bungee.api.BungeeFeastPlugin;
-import com.emanuelvini.feastcore.bungee.setup.MainBungee;
-import com.emanuelvini.feastcore.bungee.setup.loader.util.PluginManager;
-import com.emanuelvini.feastcore.common.loader.MainFeast;
+import com.emanuelvini.feastcore.bukkit.api.BukkitFeastPlugin;
+import com.emanuelvini.feastcore.bukkit.setup.MainBukkit;
 import com.emanuelvini.feastcore.common.loader.plugin.IPluginFinder;
 import com.emanuelvini.feastcore.common.logging.BridgeLogger;
+import lombok.AllArgsConstructor;
 import lombok.val;
-import net.md_5.bungee.api.ProxyServer;
-import net.md_5.bungee.api.chat.TextComponent;
-import net.md_5.bungee.api.plugin.Plugin;
+import org.bukkit.Bukkit;
+import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
-public class PluginFinder implements IPluginFinder {
+@AllArgsConstructor
+public class BukkitPluginFinder implements IPluginFinder {
 
-    private Plugin plugin = MainBungee.getBungeePluginInstance();
+    private JavaPlugin plugin;
 
-    private final Map<String, BungeeFeastPlugin> loadedPlugins = new HashMap<>();
+    private static BridgeLogger logger = MainBukkit.getBrideLogger();
 
-    private final Map<String, BungeeFeastPlugin> enabledPlugins = new HashMap<>();
+    private final Map<String, BukkitFeastPlugin> loadedPlugins = new HashMap<>();
 
-    private final BridgeLogger logger = MainBungee.getBridgeLogger();
+    private final Map<String, BukkitFeastPlugin> enabledPlugins = new HashMap<>();
+
+
+
 
     @Override
     public void loadAll() {
+
         val pluginsDirectory = new File(plugin.getDataFolder(), "plugins");
         if (!pluginsDirectory.exists()) pluginsDirectory.mkdirs();
         for (File pluginFile : pluginsDirectory.listFiles()) {
@@ -55,7 +57,7 @@ public class PluginFinder implements IPluginFinder {
         val plugin = enabledPlugins.get(name);
         if (plugin != null) {
             try {
-                PluginManager.unloadPlugin(plugin);
+                Bukkit.getPluginManager().disablePlugin(plugin);
                 loadedPlugins.put(name, plugin);
                 enabledPlugins.remove(name);
                 logger.log(String.format("§aPlugin §f%s§a desabilitado com sucesso!", name));
@@ -70,16 +72,17 @@ public class PluginFinder implements IPluginFinder {
         try {
 
             val plugin = loadedPlugins.get(name);
-            plugin.onEnable();
+            if (plugin.isEnabled()) return;
+            Bukkit.getPluginManager().enablePlugin(plugin);
             loadedPlugins.remove(name);
             enabledPlugins.put(name, plugin);
             logger.log(String.format(
-                    "§aPlugin §f%s§a habilitado com sucesso!",
-                    name));
+                            "§aPlugin §f%s§a habilitado com sucesso!",
+                            name));
         } catch (Exception e) {
             logger.log(String.format(
-                    "§cOcorreu um erro ao habilitar o plugin §f%s§c:",
-                    name));
+                            "§cOcorreu um erro ao habilitar o plugin §f%s§c:",
+                            name));
             e.printStackTrace();
         }
     }
@@ -87,28 +90,28 @@ public class PluginFinder implements IPluginFinder {
     protected void loadPlugin(File file) {
         try {
 
-            val plugin = PluginManager.loadPlugin(file);
+            val plugin = Bukkit.getPluginManager().loadPlugin(file);
 
-            if (!(plugin instanceof BungeeFeastPlugin)) {
-                logger.log(String.format(
+            if (!(plugin instanceof BukkitFeastPlugin)) {
+                Bukkit.getConsoleSender().
+                        sendMessage(String.format(
                                 "§cOcorreu um erro ao carregar o plugin §f%s§c. Ele não e um plugin Feast.",
                                 file.getName()));
                 try {
-                    PluginManager.unloadPlugin(plugin);
+                    Bukkit.getPluginManager().disablePlugin(plugin);
                 } catch (Exception ignore) {
                 }
                 return;
             }
-            val feastPlugin = (BungeeFeastPlugin) plugin;
+            val feastPlugin = (BukkitFeastPlugin) plugin;
             feastPlugin.setupDependencies();
-            feastPlugin.onLoad();
-            loadedPlugins.put(plugin.getDescription().getName(), feastPlugin);
+            loadedPlugins.put(plugin.getName(), feastPlugin);
             logger.log(String.format(
                             "§aPlugin §f%s§a carregado com sucesso!",
                             file.getName()));
 
         } catch (Exception e) {
-           logger.log(String.format(
+            logger.log(String.format(
                             "§cOcorreu um erro ao carregar o plugin §f%s§c:",
                             file.getName()));
             e.printStackTrace();

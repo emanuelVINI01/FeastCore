@@ -6,9 +6,10 @@ import org.bukkit.event.Event;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
+//Class to identifier event finder
 public interface IEventFinder {
 
-    void awaitEvent(Class<? extends Event> type, Consumer<Event> consumer, FeastPlugin plugin);
+    //void awaitEvent(Class<? extends Event> type, Consumer<Event> consumer, FeastPlugin plugin);
 
-    void awaitEventWithFilter(Class<? extends Event> type, Predicate<Event> filter, Consumer<Event> consumer, FeastPlugin plugin);
+    //void awaitEventWithFilter(Class<? extends Event> type, Predicate<Event> filter, Consumer<Event> consumer, FeastPlugin plugin);
 }

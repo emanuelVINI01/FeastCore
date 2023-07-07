@@ -1,6 +1,6 @@
 name: FeastCore
 main: com.emanuelvini.feastcore.bukkit.setup.MainBukkit
-version: 0.5-ALPHA
+version: 1.0-SNAPSHOT
 softdepend:
   - SmartInvs
   - FastAsyncWorldEdit

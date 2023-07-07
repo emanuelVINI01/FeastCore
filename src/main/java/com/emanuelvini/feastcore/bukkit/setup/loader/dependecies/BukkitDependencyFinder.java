@@ -1,7 +1,6 @@
 package com.emanuelvini.feastcore.bukkit.setup.loader.dependecies;
 
 import com.emanuelvini.feastcore.bukkit.setup.MainBukkit;
-import com.emanuelvini.feastcore.common.loader.MainFeast;
 import com.emanuelvini.feastcore.common.loader.dependecies.models.Dependency;
 import com.emanuelvini.feastcore.common.loader.dependecies.IDependencyFinder;
 import com.emanuelvini.feastcore.common.logging.BridgeLogger;
@@ -18,7 +17,7 @@ import java.nio.channels.ReadableByteChannel;
 import java.util.ArrayList;
 
 @AllArgsConstructor
-public class DependencyFinder implements IDependencyFinder {
+public class BukkitDependencyFinder implements IDependencyFinder {
 
 
     private final MainBukkit plugin;

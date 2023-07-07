@@ -1,5 +1,6 @@
 package com.emanuelvini.feastcore.bukkit.api;
 
+import com.emanuelvini.feastcore.bukkit.setup.loader.events.BukkitEventFinder;
 import com.emanuelvini.feastcore.common.api.FeastPlugin;
 import com.emanuelvini.feastcore.common.api.logging.Logging;
 import com.emanuelvini.feastcore.common.loader.MainFeast;
@@ -8,7 +9,6 @@ import lombok.Getter;
 import org.bukkit.event.Event;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.io.File;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
@@ -44,18 +44,18 @@ public class BukkitFeastPlugin extends JavaPlugin implements FeastPlugin {
 
 
     public final void awaitEvent(Class<? extends Event> type, Consumer<Event> consumer) {
-        MainFeast.getInstance().getEventFinder().awaitEvent(
-                type,
+        ((BukkitEventFinder) MainFeast.getInstance().getEventFinder()).awaitEvent(
+                (Class<? extends Event>) type,
                 consumer,
                 instance
         );
 
     }
 
-    @Override
+
     public void awaitEventWithFilter(Class<? extends Event> type, Predicate<Event> filter, Consumer<Event> consumer) {
-        MainFeast.getInstance().getEventFinder().awaitEventWithFilter(
-                type,
+        ((BukkitEventFinder) MainFeast.getInstance().getEventFinder()).awaitEventWithFilter(
+                (Class<? extends Event>) type,
                 filter,
                 consumer,
                 instance

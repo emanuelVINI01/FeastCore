@@ -1,9 +1,9 @@
 package com.emanuelvini.feastcore.bukkit.setup;
 
 
-import com.emanuelvini.feastcore.bukkit.setup.loader.dependecies.DependencyFinder;
-import com.emanuelvini.feastcore.bukkit.setup.loader.events.EventFinder;
-import com.emanuelvini.feastcore.bukkit.setup.loader.plugin.PluginFinder;
+import com.emanuelvini.feastcore.bukkit.setup.loader.dependecies.BukkitDependencyFinder;
+import com.emanuelvini.feastcore.bukkit.setup.loader.events.BukkitEventFinder;
+import com.emanuelvini.feastcore.bukkit.setup.loader.plugin.BukkitPluginFinder;
 import com.emanuelvini.feastcore.common.loader.MainFeast;
 import com.emanuelvini.feastcore.common.logging.BridgeLogger;
 import com.emanuelvini.feastcore.common.storage.MySQL;
@@ -33,17 +33,6 @@ public class MainBukkit extends JavaPlugin {
 
         brideLogger = new BridgeLogger(true);
 
-        if (Bukkit.getPluginManager().getPlugin("FastAsyncWorldEdit") == null ||
-                !Bukkit.getPluginManager().getPlugin("FastAsyncWorldEdit").isEnabled()) {
-
-            brideLogger.log("§c§lERRO FATAL! §cFastAsyncWorldEdit não encontrado.");
-            Bukkit.getPluginManager().disablePlugin(this);
-            return;
-
-        }
-
-
-
         brideLogger.log("§bInicializando MySQL...");
 
         SQLConnector mysql;
@@ -71,11 +60,11 @@ public class MainBukkit extends JavaPlugin {
             return;
         }
 
-        val dependencyFinder = new DependencyFinder(this);
+        val dependencyFinder = new BukkitDependencyFinder(this);
 
 
-        val pluginFinder = new PluginFinder(this);
-        val eventFinder = new EventFinder();
+        val pluginFinder = new BukkitPluginFinder(this);
+        val eventFinder = new BukkitEventFinder();
 
         instance = new MainFeast(dependencyFinder, eventFinder, pluginFinder, mysql, brideLogger, true);
         instance.enable();

@@ -1,7 +1,7 @@
 package com.emanuelvini.feastcore.bungee.setup;
 
-import com.emanuelvini.feastcore.bungee.setup.loader.dependencies.DependencyFinder;
-import com.emanuelvini.feastcore.bungee.setup.loader.plugin.PluginFinder;
+import com.emanuelvini.feastcore.bungee.setup.loader.dependencies.BungeeDependencyFinder;
+import com.emanuelvini.feastcore.bungee.setup.loader.plugin.BungeePluginFinder;
 import com.emanuelvini.feastcore.common.loader.MainFeast;
 import com.emanuelvini.feastcore.common.logging.BridgeLogger;
 import com.emanuelvini.feastcore.common.storage.MySQL;
@@ -12,7 +12,6 @@ import com.henryfabio.sqlprovider.connector.SQLConnector;
 import lombok.Getter;
 import lombok.val;
 import net.md_5.bungee.api.plugin.Plugin;
-import org.bukkit.Bukkit;
 
 @ConfigFile("config.yml")
 
@@ -42,8 +41,8 @@ public class MainBungee extends Plugin {
         super.onEnable();
         bungeePluginInstance =  this;
 
-        val dependencyFinder = new DependencyFinder(this);
-        val pluginFinder = new PluginFinder();
+        val dependencyFinder = new BungeeDependencyFinder(this);
+        val pluginFinder = new BungeePluginFinder();
         bridgeLogger = new BridgeLogger(false);
 
 

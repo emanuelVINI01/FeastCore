@@ -3,7 +3,6 @@ package com.emanuelvini.feastcore.bungee.setup.loader.dependencies;
 
 import com.emanuelvini.feastcore.bungee.setup.MainBungee;
 import com.emanuelvini.feastcore.bungee.setup.loader.util.PluginManager;
-import com.emanuelvini.feastcore.common.loader.MainFeast;
 import com.emanuelvini.feastcore.common.loader.dependecies.IDependencyFinder;
 import com.emanuelvini.feastcore.common.loader.dependecies.models.Dependency;
 import com.emanuelvini.feastcore.common.logging.BridgeLogger;
@@ -11,7 +10,6 @@ import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.val;
 import net.md_5.bungee.api.ProxyServer;
-import net.md_5.bungee.api.chat.TextComponent;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -21,7 +19,7 @@ import java.nio.channels.ReadableByteChannel;
 import java.util.ArrayList;
 
 @AllArgsConstructor
-public class DependencyFinder implements IDependencyFinder {
+public class BungeeDependencyFinder implements IDependencyFinder {
 
 
 
