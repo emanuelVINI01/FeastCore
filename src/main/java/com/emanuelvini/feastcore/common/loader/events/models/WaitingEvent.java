@@ -25,7 +25,7 @@ public class WaitingEvent {
     private Consumer<Event> on;
 
     public void accept(Event event) {
-        on.accept(eventType.cast(event));
+        on.accept(event);
     }
 
     public boolean filter(Event event) {
