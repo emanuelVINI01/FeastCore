@@ -23,11 +23,10 @@ Centro de todos plugins do Feast (API)
     
 package com.emanuelvini.feastcrates;
 
-import com.emanuelvini.feastcore.bukkit.api.plugin.HigePlugin;
-import com.emanuelvini.feastcrates.manager.MessageManager;
+import com.emanuelvini.feastcore.bukkit.api.plugin.BukkitFeastPlugin;
 import lombok.Getter;
 
-public class MainCrates extends HigePlugin {
+public class MainFeast extends BukkitFeastPlugin {
 
 
     @Override
