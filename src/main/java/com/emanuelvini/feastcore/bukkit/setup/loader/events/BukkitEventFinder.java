@@ -25,6 +25,7 @@ public class BukkitEventFinder implements IEventFinder {
         val listenerReg = new RegisteredListener(
                 new Listener() {},
                 (listener, event) -> {
+                    if (event.getClass() != type) return;
                     if (filter.test(event)) {
                         consumer.accept(event);
                         for (HandlerList handlerList : HandlerList.getHandlerLists()) {
