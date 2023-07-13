@@ -14,7 +14,6 @@ Centro de todos plugins do Feast (API)
 
 <h3>
  Você precisa por o plugin que usa a API em FeastCore/plugins.<br/>
- Os arquivos salvos ficam em FeastCore/plugins/plugin/arquivo.yml
 </h3>
 
 <h2>Exemplo:</h2>
