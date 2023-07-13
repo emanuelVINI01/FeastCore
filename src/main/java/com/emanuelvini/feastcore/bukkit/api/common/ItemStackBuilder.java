@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 
 /**
  * A simple builder class for the ItemStack
- * by <i>@ExpDev</i>
+ * by <i>@ExpDev</i> and <i>@emanuelVINI</i>
  * <p>
  * <b>Note:</b> Colors are parsed, so you can use & and § for the name and lore
  * <p>

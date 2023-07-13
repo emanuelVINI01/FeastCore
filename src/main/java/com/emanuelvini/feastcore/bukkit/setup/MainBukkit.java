@@ -1,6 +1,7 @@
 package com.emanuelvini.feastcore.bukkit.setup;
 
 
+import com.emanuelvini.feastcore.bukkit.setup.loader.Metrics;
 import com.emanuelvini.feastcore.bukkit.setup.loader.dependecies.BukkitDependencyFinder;
 import com.emanuelvini.feastcore.bukkit.setup.loader.events.BukkitEventFinder;
 import com.emanuelvini.feastcore.bukkit.setup.loader.plugin.BukkitPluginFinder;
@@ -25,6 +26,8 @@ public class MainBukkit extends JavaPlugin {
 
     @Getter
     private static MainBukkit bukkitPluginInstance;
+
+    private Metrics metrics;
 
     @Override
     public void onEnable() {
@@ -66,6 +69,9 @@ public class MainBukkit extends JavaPlugin {
         val pluginFinder = new BukkitPluginFinder(this);
         val eventFinder = new BukkitEventFinder();
 
+        int pluginId = 19070; // <-- Replace with the id of your plugin!
+        metrics = new Metrics(this, pluginId);
+
         instance = new MainFeast(dependencyFinder, eventFinder, pluginFinder, mysql, brideLogger, true);
         instance.enable();
     }
@@ -73,6 +79,7 @@ public class MainBukkit extends JavaPlugin {
     @Override
     public void onDisable() {
         super.onDisable();
+        metrics.shutdown();
         if (instance != null && bukkitPluginInstance != null) {
             instance.disable();
         }

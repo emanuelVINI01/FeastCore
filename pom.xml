@@ -41,6 +41,12 @@
             <version>1.0.2</version>
         </dependency>
         <dependency>
+            <groupId>com.github.SaiintBrisson.command-framework</groupId>
+            <artifactId>shared</artifactId>
+            <version>1.2.0</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
             <groupId>com.github.HenryFabio</groupId>
             <artifactId>sql-provider</artifactId>
             <version>9561f20fd2</version>

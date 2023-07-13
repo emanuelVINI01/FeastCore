@@ -1,13 +1,16 @@
 package com.emanuelvini.feastcore.bungee.setup;
 
 import com.emanuelvini.feastcore.bungee.setup.loader.dependencies.BungeeDependencyFinder;
+import com.emanuelvini.feastcore.bungee.setup.loader.events.BungeeEventFinder;
 import com.emanuelvini.feastcore.bungee.setup.loader.plugin.BungeePluginFinder;
 import com.emanuelvini.feastcore.common.loader.MainFeast;
 import com.emanuelvini.feastcore.common.logging.BridgeLogger;
 import com.emanuelvini.feastcore.common.storage.MySQL;
 import com.emanuelvini.feastcore.common.storage.configuration.MySQLConfiguration;
+import com.henryfabio.minecraft.configinjector.bungee.injector.BungeeConfigurationInjector;
 import com.henryfabio.minecraft.configinjector.common.annotations.ConfigField;
 import com.henryfabio.minecraft.configinjector.common.annotations.ConfigFile;
+import com.henryfabio.minecraft.configinjector.common.injector.ConfigurationInjectable;
 import com.henryfabio.sqlprovider.connector.SQLConnector;
 import lombok.Getter;
 import lombok.val;
@@ -15,7 +18,7 @@ import net.md_5.bungee.api.plugin.Plugin;
 
 @ConfigFile("config.yml")
 
-public class MainBungee extends Plugin {
+public class MainBungee extends Plugin implements ConfigurationInjectable {
 
     @Getter
     private static MainFeast instance;
@@ -41,8 +44,20 @@ public class MainBungee extends Plugin {
         super.onEnable();
         bungeePluginInstance =  this;
 
+        val configurationInjector = new BungeeConfigurationInjector(this);
+
+        configurationInjector.saveDefaultConfiguration(
+                this,
+                "config.yml"
+        );
+
+        configurationInjector.injectConfiguration(
+                this
+        );
+
         val dependencyFinder = new BungeeDependencyFinder(this);
         val pluginFinder = new BungeePluginFinder();
+        val eventFinder = new BungeeEventFinder();
         bridgeLogger = new BridgeLogger(false);
 
 

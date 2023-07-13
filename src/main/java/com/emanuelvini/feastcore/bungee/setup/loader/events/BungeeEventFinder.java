@@ -19,14 +19,7 @@ public class BungeeEventFinder implements IEventFinder {
     private final HashMap<Class<? extends Event>, ArrayList<WaitingEvent>> awaitingEvents = new HashMap<>();
 
     public BungeeEventFinder() {
-        val events = new ClassGraph()
-                .enableClassInfo()
-                .scan() //you should use try-catch-resources instead
-                .getClassInfo(Event.class.getName())
-                .getSubclasses()
-                .filter(info -> !info.isAbstract());
-        val listener = new AllListener();
-        ProxyServer.getInstance().getPluginManager().registerListener(MainBungee.getBungeePluginInstance(), listener);
+
 
     }
 
