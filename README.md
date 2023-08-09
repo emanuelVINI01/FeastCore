@@ -1,10 +1,10 @@
 # FeastCore
-Centro de todos plugins do Feast (API)
+Core of all Feast plugins (API)
 
-<h2> Tecnologias usadas: </h2>
+<h2> Tecnologies used: </h2>
 
 
-<h3><bold><a href="https://github.com/projectlombok/lombok"> Lombok </a> </bold>: Marcações como @Getter e @Setter, deixando o código mais limpo. </h3>
+<h3><bold><a href="https://github.com/projectlombok/lombok"> Lombok </a> </bold>: Annotations as @Getter e @Setter, deixando o código mais limpo. </h3>
 
 
 <div>
@@ -13,10 +13,10 @@ Centro de todos plugins do Feast (API)
 </div>
 
 <h3>
- Você precisa por o plugin que usa a API em FeastCore/plugins.<br/>
+ You only need put plugin in: FeastCore/plugins.<br/>
 </h3>
 
-<h2>Exemplo:</h2>
+<h2>Example:</h2>
 
 ```java
     
